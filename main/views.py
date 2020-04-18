@@ -19,6 +19,7 @@ data = {
 
 # for list in data ['lists']:
 #     name = lists[0]
+#       is_done = list[1]
 
 # Create your views here.
 def main_view(request):
