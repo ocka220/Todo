@@ -18,8 +18,8 @@ from django.urls import path
 from main.views import main_view
 from list_item.views import list_view
 
-urlpatterns = {
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_view),
     path('list/', list_view),
-}
+]
