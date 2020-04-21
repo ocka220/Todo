@@ -9,9 +9,9 @@ from django.shortcuts import render
 
 data = {
     'lists': [
-        {'name': 'Работа', 'is_done': True},
-        {'name': 'Дом', 'is_done': False},
-        {'name': 'Учеба', 'is_done': True}
+        {'id': 1, 'name': 'Работа', 'is_done': True},
+        {'id': 2, 'name': 'Дом', 'is_done': False},
+        {'id': 3, 'name': 'Учеба', 'is_done': True}
     ],
     'user_name': 'Admin',
 }
@@ -22,6 +22,10 @@ data = {
 #       is_done = list[1]
 
 # Create your views here.
-def main_view(request):
+def main_view(request, pk=0):
     context = data
     return render(request, 'index.html', context)
+
+
+def edit_view(request, pk):
+    return 'Hello'
