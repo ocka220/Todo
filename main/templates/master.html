@@ -30,7 +30,7 @@
                     </svg>
                 </div>
                 <div class='user-profile__user-name'>
-                    <span>{{ user_name }}</span>
+                    <span>{{ user }}</span>
                 </div>
                 <a class="user-profile_exit-button" href="/logout"><img src=" /static/images/exit.svg" alt="exit"></a>
             </div>
@@ -42,10 +42,11 @@
 
         <div class="relationship__table-data">
             <div class="table-data__table-header">
-                <div class="table-data_table-header-item-1">TO DO List</div>
-                <a class="add_new_list" href="/create/">
-                     <div class="header__button-create-bundle">+</div>
-                </a>
+
+                {% block page_title %}
+
+                {% endblock %}
+
             </div>
 
         {% block body %}
