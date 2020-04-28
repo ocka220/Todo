@@ -16,7 +16,9 @@ def list_view(request, pk):
     #user = request.user
 
     lists = ListItemModel.objects.filter(listmodel_id=pk).order_by('created')
+
     name = ListModel.objects.filter(id=pk).first()
+
     context = {
         'lists': lists,
         'user': request.user.username,

@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
+from main.forms import ListForm
 from main.models import ListModel
 
 
@@ -21,6 +24,9 @@ def main_view(request):
     # lists = ListModel.objects.filter(user_id=user_id)
     # user.username
     # user.email
+
+    # set1 = lists.filter(name='Работа') - доп.ветвление на основной фильтр
+
     context = {
         'lists':lists,
         'user': user.username
@@ -33,8 +39,24 @@ def edit_view(request, pk):
     return 'Hello'
 
 
-def new_list_view(request):
+def create_view(request):
     """view создания нового списка"""
 
-    return render(request, 'new_list.html')
+    form = ListForm()
+
+    if request.method == 'POST':
+        name = request.POST['name']
+        form = ListForm({
+            'name': name,
+            'user': request.user
+        })
+        success_url = reverse('main:main')
+        user = request.user
+
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+
+    return render(request, 'new_list.html', {'form': form})
+
 

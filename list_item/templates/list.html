@@ -9,7 +9,7 @@
 
     <a class="add_new_list" href="/create/">
                      <div class="header__button-create-bundle">+</div>
-                </a>
+    </a>
 {% endblock %}
 
  {% block body %}
@@ -35,9 +35,9 @@
                     </svg>
                 </a>
             </div>
-            {% if list.date %}
+            {% if list.expare_data %}
                 <a href='#'>
-                    <div class="calendarik">{{ list.date }} </div>
+                    <div class="calendarik">{{ list.expare_data }} </div>
                 </a>
             {% else %}
                  <div class="calendarik">

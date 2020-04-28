@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-import django.urls
+import django
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect, reverse
+from registration.forms import CustomUserForm, LoginForm
 
-from registration.forms import CustomUserForm
 
 
 def create_user(request):
@@ -21,3 +22,22 @@ def create_user(request):
 
 def login_view(request):
     return render(request, 'login.html', {})
+
+def login_view(request):
+    """Логин"""
+    form = LoginForm
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        success_url = reverse('main:main')
+
+        if form.is_valid():
+            username = form.cleaned_data.get('login')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+
+            if user and user.is_active:
+                login(request, user)
+                return redirect(success_url)
+
+
+    return render(request, 'login.html', {'form':form})
