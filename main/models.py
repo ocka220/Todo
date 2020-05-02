@@ -2,6 +2,7 @@ from django.db import models
 
 # from django.contrib.auth.models import User - плохой вариант импорта
 
+
 class ListModel(models.Model):
     """ Модель списка дел """
     name = models.CharField(max_length=128, verbose_name='Название списка')
@@ -11,7 +12,8 @@ class ListModel(models.Model):
     is_done = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return f' {self.id}:{self.name}:{self.user}'
 
     class Meta:
         verbose_name = 'Список дел'
+        unique_together = ('name', 'user')

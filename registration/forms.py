@@ -19,6 +19,15 @@ class CustomUserForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = UserCreationForm.Meta.fields + ('email',)
+        error_messages = {
+            'username': {
+                'unique_together': "Другое имя введите",
+                'unique':'Другое имя'
+            },
+            'password2': {
+                'password_mismatсh':'Пароль не одинаков',
+            }
+        }
 
 
 class LoginForm(forms.Form):

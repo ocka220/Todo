@@ -20,8 +20,7 @@ def create_user(request):
 
     return render(request, 'registration.html', {'form':form})
 
-def login_view(request):
-    return render(request, 'login.html', {})
+
 
 def login_view(request):
     """Логин"""

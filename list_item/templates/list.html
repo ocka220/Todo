@@ -5,10 +5,9 @@
 {% endblock %}
 
 {% block page_title %}
-     <div class="table-data_table-header-item-1">{{ name }}</div>
-
-    <a class="add_new_list" href="/create/">
-                     <div class="header__button-create-bundle">+</div>
+     <div class="table-data_table-header-item-1">{{ list_name.name }}</div>
+    <a class="add_new_list" href="{% url "list_item:create" pk=list_name.id %}">
+         <div class="header__button-create-bundle">+</div>
     </a>
 {% endblock %}
 
@@ -23,7 +22,6 @@
                      {% endif %}
 
 
-
         <div class="buttons">
             <div class="table-data-two_table-icon">
                 <a href='{% url "list_item:edit" pk=list.id %}'>
@@ -35,7 +33,7 @@
                     </svg>
                 </a>
             </div>
-            {% if list.expare_data %}
+            {% if list.expire_date %}
                 <a href='#'>
                     <div class="calendarik">{{ list.expare_data }} </div>
                 </a>
@@ -59,6 +57,28 @@
         </div>
     </div>
     {% endfor %}
+{% endblock %}
+
+{% block empty_div %}
+        {% if lists|length < 6 %}
+            {% for _ in lists|get_count %}
+                <div class="table-data__table-row>
+                    <div class="table-row_table_cell-1></div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+ {% if pages.1 %}
+        <div class="table-data__table-row">
+            <div class="paginator_class">
+                <ul class="pagination-wrapper_button">
+                    {% for page in pages %}
+                        <li><a class="active" href="/?page={{ page }}">{{ page }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
 
