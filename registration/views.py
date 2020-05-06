@@ -1,5 +1,5 @@
 import django
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, reverse
 from registration.forms import CustomUserForm, LoginForm
 
@@ -40,3 +40,9 @@ def login_view(request):
 
 
     return render(request, 'login.html', {'form':form})
+
+
+def logout_view(request):
+    logout(request)
+
+    return render(request, 'logout.html')

@@ -34,7 +34,7 @@ class LoginForm(forms.Form):
     login = forms.CharField(
         required=True,
         max_length=64,
-        widget=forms.TextInput()
+        widget=forms.TextInput(attrs={'id':'input_field_email-id'}),
     )
 
     password = forms.CharField(

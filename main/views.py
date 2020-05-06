@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import  login_required
@@ -27,12 +28,12 @@ def main_view(request):
 
     lists = ListModel.objects.filter(
         user=user).order_by('-created')
+
     # lists = ListModel.objects.filter(user_id=user_id)
     # user.username
     # user.email
 
     # set1 = lists.filter(name='Работа') - доп.ветвление на основной фильтр
-
 
 
     paginator = Paginator(lists, PAGE_COUNT)
@@ -54,8 +55,28 @@ def main_view(request):
     return render(request, 'index.html', context)
 
 
-def edit_view(request, pk):
-    return 'Hello'
+@login_required(login_url='registration/login/')
+# def edit_view(request, pk):
+#
+#     """view редактирования списка"""
+#     form = ListForm()
+#     list = ListModel.objects.get(id=pk)
+#
+#     if request.method == 'POST':
+#         list.name = request.POST.get['name']
+#         form = ListForm({
+#                     'name': name,
+#                     'user': request.user
+#                 })
+#         success_url = reverse('main:main')
+#
+#         if form.is_valid():
+#                 form.save()
+#                 return redirect(success_url)
+#
+#     else:
+#         return render(request, 'new_list.html', {'list': list})
+
 
 
 @login_required(login_url='registration/login/')

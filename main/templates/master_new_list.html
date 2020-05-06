@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Новый список</title>
+      <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+      <link rel="stylesheet" href="/static/css/save_list.css">
+  </head>
+ <body>
+    <div class="wrapper__auth">
+      <div class="auth__column_right">
+        <div class="auth__column_right_form">
+          <div class="auth__column_right_form__header">
+               Новый список
+          </div>
+
+        {% block form %}
+        {% endblock %}
+
+          <div class="auth__column_right__form_footer">
+            <label class="form_footer_button-submit">
+              <input type="submit" form="auth_form" value="" style="display: none">
+              <div class="auth__button_submit" id="login-submit-btn" ><span>&#10004</span></div>
+            </label>
+
+          {% block cancel %}
+          {% endblock %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
