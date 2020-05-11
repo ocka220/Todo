@@ -56,26 +56,24 @@ def main_view(request):
 
 
 @login_required(login_url='registration/login/')
-# def edit_view(request, pk):
-#
-#     """view редактирования списка"""
-#     form = ListForm()
-#     list = ListModel.objects.get(id=pk)
-#
-#     if request.method == 'POST':
-#         list.name = request.POST.get['name']
-#         form = ListForm({
-#                     'name': name,
-#                     'user': request.user
-#                 })
-#         success_url = reverse('main:main')
-#
-#         if form.is_valid():
-#                 form.save()
-#                 return redirect(success_url)
-#
-#     else:
-#         return render(request, 'new_list.html', {'list': list})
+def edit_view(request, pk):
+    """view редактирования списка"""
+
+    list_ = ListModel.objects.filter(id=pk).first()
+
+    if request.method == 'POST':
+        form = ListForm({
+            'name': request.POST['name'],
+            'user': request.user}, instance=list_)
+        success_url = reverse('main:main')
+
+        if form.is_valid():
+                form.save()
+                return redirect(success_url)
+    else:
+        form = ListForm(instance=list_)
+
+    return render(request, 'edit.html', {'form': form})
 
 
 

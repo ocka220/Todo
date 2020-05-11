@@ -12,9 +12,13 @@
     <div class="wrapper__auth">
       <div class="auth__column_right">
         <div class="auth__column_right_form">
-          <div class="auth__column_right_form__header">
-               Новый список
-          </div>
+
+        {% block title %}
+        {% endblock %}
+
+{#          <div class="auth__column_right_form__header">#}
+{#               Новый список#}
+{#          </div>#}
 
         {% block form %}
         {% endblock %}
